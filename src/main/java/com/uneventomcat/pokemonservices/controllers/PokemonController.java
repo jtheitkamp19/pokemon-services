@@ -2,11 +2,9 @@ package com.uneventomcat.pokemonservices.controllers;
 
 import com.uneventomcat.pokemonservices.models.Pokemon;
 import com.uneventomcat.pokemonservices.repositories.PokemonRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,13 @@ public class PokemonController {
     @GetMapping("{id}")
     public Pokemon get(@PathVariable Long id) {
         return pokemonRepository.getById(id);
+    }
+
+    @RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
+    public Pokemon update(@PathVariable Long id, @RequestBody Pokemon pokemon) {
+        Pokemon existingPokemon = pokemonRepository.getById(id);
+        BeanUtils.copyProperties(pokemon, existingPokemon);
+        pokemonRepository.saveAndFlush(existingPokemon);
+        return existingPokemon;
     }
 }
