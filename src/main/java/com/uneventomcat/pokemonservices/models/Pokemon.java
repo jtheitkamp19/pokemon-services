@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "Pokemon")
+@Entity(name = "pokemon")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pokemon {
     @Id
@@ -27,7 +27,7 @@ public class Pokemon {
 
     @ManyToMany
     @JoinTable(
-        name = "PokemonTypes",
+        name = "pokemon_types",
         joinColumns = @JoinColumn(name = "number"),
         inverseJoinColumns = @JoinColumn(name = "id")
     )
