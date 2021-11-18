@@ -29,7 +29,7 @@ public class Pokemon {
     @JoinTable(
         name = "pokemon_types",
         joinColumns = @JoinColumn(name = "number"),
-        inverseJoinColumns = @JoinColumn(name = "id")
+        inverseJoinColumns = @JoinColumn(name = "typeid")
     )
     private List<Type> types;
 
