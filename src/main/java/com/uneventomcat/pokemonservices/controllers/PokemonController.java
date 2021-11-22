@@ -26,7 +26,7 @@ public class PokemonController {
 
     @GetMapping(path = "/name/{name}")
     public List<Pokemon> getByName(@PathVariable String name) {
-        return pokemonRepository.findByName(name);
+        return pokemonRepository.findByNameContaining(name);
     }
 
     @RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)

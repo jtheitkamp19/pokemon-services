@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 
-    @Query(value = "SELECT * FROM pokemon WHERE name LIKE %:name%", nativeQuery = true)
-    public List<Pokemon> findByName(@Param("name") String name);
+    List<Pokemon> findByNameContaining(String name);
 }
