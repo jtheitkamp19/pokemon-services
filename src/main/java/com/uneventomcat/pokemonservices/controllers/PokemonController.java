@@ -29,6 +29,11 @@ public class PokemonController {
         return pokemonRepository.findByNameContaining(name);
     }
 
+    @GetMapping(path = "/name/full/{name}")
+    public List<Pokemon> getByNameMatching(@PathVariable String name) {
+        return pokemonRepository.findByName(name);
+    }
+
     @GetMapping(path = "/family/{id}")
     public List<Pokemon> getByFamilyId(@PathVariable Long id) {
         return pokemonRepository.findPokeFamilyForPokemonWithId(id);

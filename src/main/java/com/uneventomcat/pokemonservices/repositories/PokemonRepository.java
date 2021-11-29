@@ -11,6 +11,8 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 
     List<Pokemon> findByNameContaining(String name);
 
+    List<Pokemon> findByName(String name);
+
     @Query(value = "SELECT * FROM pokemon WHERE familyid = (SELECT familyid FROM pokemon WHERE number = :id) ORDER BY number ASC;", nativeQuery = true)
     List<Pokemon> findPokeFamilyForPokemonWithId(@Param("id") Long id);
 }
