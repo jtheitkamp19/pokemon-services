@@ -29,6 +29,11 @@ public class PokemonController {
         return pokemonRepository.findByNameContaining(name);
     }
 
+    @GetMapping(path = "/family/{id}")
+    public List<Pokemon> getByFamilyId(@PathVariable Long id) {
+        return pokemonRepository.findPokeFamilyForPokemonWithId(id);
+    }
+
     @RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
     public Pokemon update(@PathVariable Long id, @RequestBody Pokemon pokemon) {
         Pokemon existingPokemon = pokemonRepository.getById(id);

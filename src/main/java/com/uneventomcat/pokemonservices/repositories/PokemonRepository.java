@@ -10,4 +10,7 @@ import java.util.List;
 public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 
     List<Pokemon> findByNameContaining(String name);
+
+    @Query(value = "SELECT * FROM pokemon WHERE familyid = (SELECT familyid FROM pokemon WHERE number = :id);", nativeQuery = true)
+    List<Pokemon> findPokeFamilyForPokemonWithId(@Param("id") Long id);
 }
